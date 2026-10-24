@@ -3,7 +3,6 @@ import math
 import json
 import random
 import datetime
-import time
 import concurrent.futures
 import numpy as np
 import pandas as pd
@@ -113,7 +112,7 @@ class JarvisMarketScanner:
             return symbol, None
 
     def scan_and_trade(self):
-        print(f"\n🔍 J.A.R.V.I.S. // RUNNING MARKET SCAN AT {datetime.datetime.now()}...")
+        print(f"🔍 J.A.R.V.I.S. // RUNNING MARKET SCAN AT {datetime.datetime.now()}...")
         try:
             account = trading_client.get_account()
             buying_power = float(account.buying_power)
@@ -152,14 +151,6 @@ class JarvisMarketScanner:
         except Exception as e:
             print(f"⚠️ Scan cycle error: {str(e)}")
 
-    def start_continuous_loop(self, interval_minutes=15):
-        print("🚀 J.A.R.V.I.S. CONTINUOUS SCANNER ACTIVATED.")
-        while True:
-            self.scan_and_trade()
-            print(f"💤 Sleeping for {interval_minutes} minutes before next market scan...\n" + "="*50)
-            time.sleep(interval_minutes * 60)
-
 if __name__ == "__main__":
     scanner = JarvisMarketScanner(TARGET_UNIVERSE)
-    # Runs the scanner continuously every 15 minutes
-    scanner.start_continuous_loop(interval_minutes=15)
+    scanner.scan_and_trade()
