@@ -2,8 +2,8 @@ name: J.A.R.V.I.S. Automated Trading Bot
 
 on:
   schedule:
-    # Runs every 15 minutes, Monday through Friday
-    - cron: '*/15 * * * 1-5'
+    # Runs every 15 minutes between 4:00 AM and 11:00 AM UTC (9:30 AM to 4:30 PM IST), from Friday to Monday
+    - cron: '*/15 4-11 * * 5,6,0,1'
   workflow_dispatch:
 
 jobs:
